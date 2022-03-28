@@ -6,6 +6,7 @@ import PaletteForm from "./PaletteForm";
 import { generatePalette } from "./colorHelpers";
 import { Route, Routes } from "react-router-dom";
 import LocalStorage from "./localStorage";
+import Solo from "./Solo";
 
 class App extends Component {
   constructor(...props) {
@@ -32,7 +33,6 @@ class App extends Component {
   }
 
   render() {
-    console.log('hi')
     return (
       <Routes>
         <Route
@@ -40,10 +40,22 @@ class App extends Component {
           path="/"
           element={<PaletteList palettes={this.state.colors} />}
         />
+
+        <Route
+          exact
+          path="/colorpicker"
+          element={<Solo/>}
+        />
+
         <Route
           exact
           path="/new"
-          element={<PaletteForm palettes={this.state.colors} savePalette={this.savePalette} />}
+          element={
+            <PaletteForm
+              palettes={this.state.colors}
+              savePalette={this.savePalette}
+            />
+          }
         />
         <Route
           exact

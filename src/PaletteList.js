@@ -28,9 +28,14 @@ class PaletteList extends Component {
           <nav className={classes.nav}>
             <h1>ColorPicker</h1>
 
+            <Button variant="outlined" style={buttonStyles} href="/colorpicker">
+              Simple Colorpicker
+            </Button>
+
             <Button variant="outlined" style={buttonStyles} href="/new">
               Create a palette!
             </Button>
+
           </nav>
           <div className={classes.miniPalettes}>
             {palettes.map((e) => (

@@ -10,21 +10,22 @@ import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import IroColorPicker from "./IroColorPicker";
-import iro from "@jaames/iro";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import ColorRect from "./ColorRect";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { useParams, useNavigate } from "react-router-dom";
 import chroma from "chroma-js";
+import Colorpicker from "./Colorpicker";
 
 const drawerWidth = 360;
 
 const styles = (theme) => ({
+  
   root: {
     display: "flex",
   },
+
   appBar: {
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.sharp,
@@ -32,6 +33,8 @@ const styles = (theme) => ({
     }),
     display: "flex",
     padding: "0 24px",
+    justifyContent: "center",
+    color: 'black'
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -80,6 +83,7 @@ const styles = (theme) => ({
     flexDirection: "column",
     alignItems: "center",
     gap: " 2rem ",
+    height: "100%",
   },
 
   palleteColors: {
@@ -129,8 +133,8 @@ class PaletteForm extends Component {
     super(...props);
 
     this.state = {
-      color: "rgba(255,255,255,1)",
-      colorString: "rgba(255,255,255,1)",
+      color: "hsla(0,50%,50%,1)",
+      colorString: "hsla(0,50%,50%,1)",
       colorsArray: [],
       name: "",
       paletteName: "",
@@ -142,6 +146,7 @@ class PaletteForm extends Component {
     this.savePalette = this.savePalette.bind(this);
     this.randomColor = this.randomColor.bind(this);
     this.deleteBox = this.deleteBox.bind(this);
+    this.colorInput = this.colorInput.bind(this);
   }
 
   handleChange(e) {
@@ -172,6 +177,14 @@ class PaletteForm extends Component {
     });
   }
 
+  colorInput(e) {
+    const colorInput = e.target.value;
+    if (chroma.valid(colorInput)) {
+      const color = chroma(colorInput).css("hsla");
+      this.setState({ color, colorString: color });
+    }
+  }
+
   savePalette() {
     const { paletteName } = this.state;
     this.props.savePalette({
@@ -183,13 +196,14 @@ class PaletteForm extends Component {
   }
 
   componentDidMount() {
+    this.randomColor();
     ValidatorForm.addValidationRule("isUnicName", (value) => {
       return !this.state.colorsArray.find(
         (e) => e.name.toLowerCase() === value.toLowerCase()
       );
     });
 
-    ValidatorForm.addValidationRule("isUnicColor", (value) => {
+    ValidatorForm.addValidationRule("isUnicColor", () => {
       return !this.state.colorsArray.find(
         (e) => e.color === this.state.colorString
       );
@@ -199,6 +213,10 @@ class PaletteForm extends Component {
       return !this.props.palettes.find(
         (e) => e.paletteName.toLowerCase() === value.toLowerCase()
       );
+    });
+
+    ValidatorForm.addValidationRule("hasColors", () => {
+      return this.state.colorsArray.length
     });
   }
 
@@ -211,6 +229,7 @@ class PaletteForm extends Component {
         <CssBaseline />
         <AppBar
           position="fixed"
+          style={{ background: "hsla(167, 22%, 96%, 1)", boxShadow: "none" }}
           className={classNames(classes.appBar, {
             [classes.appBarShift]: open,
           })}
@@ -237,11 +256,14 @@ class PaletteForm extends Component {
                 <div className={classes.navForm}>
                   <TextValidator
                     label="Palette name"
+                    variant="standard"
+                    type="dark"
                     value={this.state.paletteName}
-                    validators={["required", "isUnicPaletteName"]}
+                    validators={["required", "isUnicPaletteName", 'hasColors']}
                     errorMessages={[
                       "This field is required!",
                       "Palette name already in use!",
+                      'You need at least one color'
                     ]}
                     onChange={(e) =>
                       this.setState({ paletteName: e.target.value })
@@ -284,42 +306,13 @@ class PaletteForm extends Component {
             >
               Palette Generator
             </h1>
+            <Colorpicker
+              color={this.state.color}
+              colorString={this.state.colorString}
+              onColorChange={this.onColorChange}
+              colorInput={this.colorInput}
+            />
 
-            <div>
-              <IroColorPicker
-                color={this.state.color}
-                onColorChange={this.onColorChange}
-                layout={[
-                  {
-                    component: iro.ui.Wheel,
-                  },
-                  {
-                    component: iro.ui.Slider,
-                    options: {
-                      sliderType: "hue",
-                    },
-                  },
-                  {
-                    component: iro.ui.Slider,
-                    options: {
-                      sliderType: "saturation",
-                    },
-                  },
-                  {
-                    component: iro.ui.Slider,
-                    options: {
-                      sliderType: "value",
-                    },
-                  },
-                  {
-                    component: iro.ui.Slider,
-                    options: {
-                      sliderType: "alpha",
-                    },
-                  },
-                ]}
-              />
-            </div>
             <ValidatorForm onSubmit={this.addColor}>
               <div className={classes.form}>
                 <TextValidator

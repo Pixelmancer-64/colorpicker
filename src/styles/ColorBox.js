@@ -6,6 +6,9 @@ const styles = {
       flexBasis: "20%",
       position: "relative",
       cursor: "pointer",
+      "@media (max-width: 720px)": {
+        flexBasis: '100%'
+      },
     },
     ".ColorBox button": {
       cursor: "pointer",
@@ -23,6 +26,12 @@ const styles = {
       border: "none",
       fontSize: "1rem",
       opacity: "0",
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      "@media (max-width: 720px)": {
+        height: '1rem'
+      },
     },
     ".ColorBox-overlay": {
       opacity: "0",
@@ -84,6 +93,13 @@ const styles = {
       fontWeight: "600",
       letterSpacing: "1px",
       textTransform: "uppercase",
+      "@media (max-width: 720px)": {
+        padding: '0',
+        position: 'relative',
+        display: 'flex',
+        // justifyContent: 'center',
+        alignItems: 'center'
+      },
     },
     ".see-more": {
       position: "absolute",
