@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Palette from "./Palette";
+import Home from './Home'
 import PaletteList from "./PaletteList";
 import Shades from "./Shades";
 import PaletteForm from "./PaletteForm";
@@ -38,14 +39,16 @@ class App extends Component {
         <Route
           exact
           path="/"
-          element={<PaletteList palettes={this.state.colors} />}
+          element={<Home/>}
         />
 
         <Route
           exact
-          path="/colorpicker"
-          element={<Solo/>}
+          path="/paletteList"
+          element={<PaletteList palettes={this.state.colors} />}
         />
+
+        <Route exact path="/colorpicker" element={<Solo />} />
 
         <Route
           exact
