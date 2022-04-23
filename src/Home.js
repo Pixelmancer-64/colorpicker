@@ -18,8 +18,8 @@ function Home(props) {
                 Quick and complete tools for color related projects
             </p>
             <div className={classes.buttons}>
-              <a href="#" className={classes.button}>
-                Start eating well
+              <a href="/paletteList" className={classes.button}>
+                Start now!
               </a>
               <a href="#" className={classes.button}>
                 Learn more ↓
