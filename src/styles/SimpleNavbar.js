@@ -1,8 +1,9 @@
 const styles = {
   root: {
-    borderBottom: '1px solid black',
-    padding: "0 3vw",
-    color: 'hsla(346, 100%, 50%, 1)'
+    borderBottom: '1px solid hsla(225, 10%, 92%, 1)',
+    padding: ".5vh 3vw",
+    color: '#4A74FF',
+
   },
   logo : {
     letterSpacing: "1.5px"

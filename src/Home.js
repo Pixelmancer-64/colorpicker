@@ -12,13 +12,17 @@ function Home(props) {
         <div className={classes.container}>
           <section className={classes.main}>
             <h1 className={classes.introduction}>
-              Powerful tools <br/> for your <span className={classes.rainbow + ' ' + classes.rainbowAnimated }>colorful</span> needs!
+              Powerful tools <br /> for your{" "}
+              <span className={classes.rainbow + " " + classes.rainbowAnimated}>
+                colorful
+              </span>{" "}
+              needs!
             </h1>
             <p className={classes.description}>
-                Quick and complete tools for color related projects
+              Quick and complete tools for color related projects
             </p>
             <div className={classes.buttons}>
-              <a href="/paletteList" className={classes.button}>
+              <a href="/paletteList" className={classes.button + " " + classes.special}>
                 Start now!
               </a>
               <a href="#" className={classes.button}>
@@ -26,7 +30,6 @@ function Home(props) {
               </a>
             </div>
           </section>
-          <img src="./img/hero.png" alt="Woman eating food" />
         </div>
       </section>
     </div>

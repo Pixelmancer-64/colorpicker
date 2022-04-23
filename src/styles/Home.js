@@ -3,32 +3,43 @@ const styles = {
     fontFamily: '"Rubik", "sans-serif"',
   },
 
-  hero: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    padding: "4.8rem 5.2rem",
-  },
+  hero: {},
 
   container: {
-    maxWidth: "130rem",
-    display: "grid",
-    gridTemplateColumns: "2fr 1fr",
-    gap: "9.6rem",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
     alignItems: "center",
+    padding: "1vh 3vw",
+    maxWidth: "130rem",
   },
 
   buttons: {
     display: "flex",
-    gap: "1.6rem",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: "8vh",
+    gap: "5vw",
   },
+
   button: {
     fontSize: "2rem",
-    padding: "1.2rem 3.2rem",
-    borderRadius: "12px",
+    padding: "1vh 3vw",
+    borderRadius: "16px",
     fontWeight: "500",
-    transition: "background-color 250ms ease-out",
-    display: "inline-block",
+    border: "2px solid #999",
+    color: "#4A74FF",
+    transition: "filter 150ms",
+    "&:hover":{
+      filter: "brightness(95%)",
+    }
+  },
+
+  special: {
+    backgroundColor: "#4A74FF",
+    color: "white",
+    border: "2px solid #4A74FF",
+    transition: "filter 150ms",
   },
 
   introduction: {
@@ -48,7 +59,7 @@ const styles = {
   },
 
   rainbow: {
-    fontSize: "1.5em"
+    fontSize: "1.5em",
   },
 
   rainbowAnimated: {
@@ -57,7 +68,7 @@ const styles = {
     backgroundClip: "text",
     color: "transparent",
     animation: "$rainbowAnimation 10s infinite forwards",
-    backgroundSize: "50vw 50vh",
+    backgroundSize: "750px",
   },
 
   "@keyframes rainbowAnimation": {
