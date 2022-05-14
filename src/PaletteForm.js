@@ -21,7 +21,6 @@ import Colorpicker from "./Colorpicker";
 const drawerWidth = 360;
 
 const styles = (theme) => ({
-  
   root: {
     display: "flex",
   },
@@ -34,7 +33,7 @@ const styles = (theme) => ({
     display: "flex",
     padding: "0 24px",
     justifyContent: "center",
-    color: 'black'
+    color: "black",
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -216,7 +215,7 @@ class PaletteForm extends Component {
     });
 
     ValidatorForm.addValidationRule("hasColors", () => {
-      return this.state.colorsArray.length
+      return this.state.colorsArray.length;
     });
   }
 
@@ -259,11 +258,11 @@ class PaletteForm extends Component {
                     variant="standard"
                     type="dark"
                     value={this.state.paletteName}
-                    validators={["required", "isUnicPaletteName", 'hasColors']}
+                    validators={["required", "isUnicPaletteName", "hasColors"]}
                     errorMessages={[
                       "This field is required!",
                       "Palette name already in use!",
-                      'You need at least one color'
+                      "You need at least one color",
                     ]}
                     onChange={(e) =>
                       this.setState({ paletteName: e.target.value })

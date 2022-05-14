@@ -57,6 +57,7 @@ class Solo extends Component {
   }
   colorInput(e) {
     const colorInput = e.target.value;
+    console.log(colorInput)
     if (chroma.valid(colorInput)) {
       const color = chroma(colorInput).css("hsla");
       this.setState({ color, colorString: color });

@@ -12,7 +12,7 @@ function Home(props) {
         <div className={classes.container}>
           <section className={classes.main}>
             <h1 className={classes.introduction}>
-              Powerful tools <br /> for your{" "}
+              Powerful tools <br /> for your
               <span className={classes.rainbow + " " + classes.rainbowAnimated}>
                 colorful
               </span>{" "}
